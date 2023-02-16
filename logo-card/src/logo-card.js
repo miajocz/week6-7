@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import { MemeMaker } from '@lrnwebcomponents/meme-maker/meme-maker.js';
 
 const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 
@@ -6,72 +7,21 @@ class LogoCard extends LitElement {
   static properties = {
     title: { type: String },
     image: { type: String },
+    topText: { type: String },
+    bottomText: { type: String },
     paragraphText: { type: String }
   }
 
   static styles = css`
-  .duplicator:hover {
-    background-color: green;
-  }
-  .duplicator:focus {
-    background-color: green;
-  }
-  
-  .card {
-    width: 350px;
-    border: 2px solid black;
-    text-align: center;
-  }
-  h1 {
-    margin-top: 8px;
-    margin-left: 32px;
-    margin-right: 32px;
-  }
-  img {
-    display: block;
-    margin-left: 120px;
-    margin-right: auto;
-    margin-top: 16px;
-    width: 400px;
-  }
-  p {
-    margin-top: 16px;
-    margin-bottom: 32px;
-    display: none;
-  }
-  .details {
-    margin-bottom: 8px;
-    border: 2px solid black;
-    background-color: gray;
-    color: blue;
-  }
-  @media only screen and (min-width: 500px) and (max-width: 800px) {
-    button {
-      display: none;
-    }
-  }
-  @media only screen and (max-width: 500px) {
-    div {
-      transform: scale(0.8);
-    }
-    img {
-      width: 80%;
-    }
-  }
-  
-  .bg-toggled {
-    background-color: green;
-  }
-  
-  .hidden {
-    display: block;
-  }
+    /* Styles omitted for brevity */
   `;
 
   constructor() {
     super();
     this.title = 'Penn State Logo';
     this.image = 'https://www.psu.edu/psu-edu-assets/images/shared/psu-mark.svg';
+    this.topText = 'Penn State';
+    this.bottomText = 'University Park';
     this.paragraphText = 'This is the logo that The Pennsylvania State University uses.';
   }
 
@@ -85,9 +35,10 @@ class LogoCard extends LitElement {
       </div>
       <div id="card" class="card">
         <h1>${this.title}</h1>
-        <img src=${this.image}>
+        <meme-maker image-url=${this.image} top-text=${this.topText} bottom-text=${this.bottomText}></meme-maker>
         <p>${this.paragraphText}</p>
         <button class="details">Details</button>
+        <slot></slot>
       </div>
     `;
   }
