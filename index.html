@@ -34,10 +34,17 @@
       document.querySelector("logo-card:last-child").remove();
     });
 
-    //add a button to change the background color of the whole card to red when the toggle-background button is clicked
-    document.querySelector(".toggle-background").addEventListener("click", function (e) {
-      document.querySelector("#card").style.backgroundColor = "red";
+    const changecolor = document.querySelector(".toggle-background");
+    changecolor.addEventListener("click", function (e) {
+      console.log("The background color has been changed");
+      if (document.querySelector(".card").style.backgroundColor == "white") {
+        document.querySelector(".card").style.backgroundColor = "red";
+      } else {
+        document.querySelector(".card").style.backgroundColor = "white";
+      }
     });
+
+
 
   </script>
 </body>
