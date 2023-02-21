@@ -2,27 +2,44 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Put your description here.">
-  <base href="/">
+  <div class="button">
+    <button class="duplicator">Duplicator</button>
+    <button class="toggle-background">Toggle Background</button>
+    <button class="change-heading">Change Heading</button>
+    <button class="delete-card">Delete Card</button>
+  </div>
 
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #ededed;
-    }
-  </style>
   <title>logo-card</title>
 </head>
 
 <body>
   <logo-card></logo-card>
 
-  <script type="module" src="./src/logo-card.js"></script>
+  <script type="module">
+    import './src/logo-card.js';
+
+    document.querySelector(".duplicator").addEventListener("click", function (e) {
+      const card = document.querySelector("logo-card");
+      const clone = card.cloneNode(true);
+      card.parentNode.appendChild(clone);
+    });
+
+    // write a method to change the h1 field to "Something Else" when then change-heading button is clicked
+    document.querySelector(".change-heading").addEventListener("click", function (e) {
+      document.querySelector("logo-card h1") = "Something Else";
+    });
+
+
+    document.querySelector(".delete-card").addEventListener("click", function (e) {
+      document.querySelector("logo-card:last-child").remove();
+    });
+
+    //add a button to change the background color of the whole card to red when the toggle-background button is clicked
+    document.querySelector(".toggle-background").addEventListener("click", function (e) {
+      document.querySelector("#card").style.backgroundColor = "red";
+    });
+
+  </script>
 </body>
 
 </html>
