@@ -46,6 +46,7 @@ export class LogoCard extends LitElement {
     }
     .details {
       margin-bottom: 8px;
+      padding-top: 10px;
     }
     summary {
       border: 2px solid black;
@@ -91,16 +92,19 @@ export class LogoCard extends LitElement {
       <div id="card" class="card">
         <h1>Penn State Logo Card</h1>
         <meme-maker class="meme" image-url=${this.image} top-text=${this.topText} bottom-text=${this.bottomText}></meme-maker>
-        <p>${this.paragraphText}</p>
-        <details class = "details">
+        <slot>
+          <p>${this.paragraphText}</p>
+        </slot>
+        <details class="details">
           <summary>Details</summary>
-          <ul>
-          <li>This is a logo for Penn State University.</li>
-          <li>It is a blue and white shield with the letters PSU in the middle.</li>
-          <li>It is used on the Penn State website and on all of the Penn State merchandise.</li>
-          </ul>
+          <slot>
+            <ul>
+              <li>This is a logo for Penn State University.</li>
+              <li>It is a blue and white shield with the letters PSU in the middle.</li>
+              <li>It is used on the Penn State website and on all of the Penn State merchandise.</li>
+            </ul>
+          </slot>
         </details>
-        <slot></slot>
       </div>
     `;
   }

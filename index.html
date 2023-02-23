@@ -26,7 +26,9 @@
 
     // write a method to change the h1 field to "Something Else" when then change-heading button is clicked
     document.querySelector(".change-heading").addEventListener("click", function (e) {
-      document.querySelector("logo-card h1") = "Something Else";
+      const logoCard = document.querySelector("logo-card");
+      const h1Element = logoCard.shadowRoot.querySelector("h1");
+      h1Element.textContent = "Something Else";
     });
 
 
@@ -34,14 +36,17 @@
       document.querySelector("logo-card:last-child").remove();
     });
 
-    const changecolor = document.querySelector(".toggle-background");
-    changecolor.addEventListener("click", function (e) {
-      console.log("The background color has been changed");
-      if (document.querySelector(".card").style.backgroundColor == "white") {
-        document.querySelector(".card").style.backgroundColor = "red";
-      } else {
-        document.querySelector(".card").style.backgroundColor = "white";
-      }
+    document.addEventListener("DOMContentLoaded", function () {
+      const changecolor = document.querySelector(".toggle-background");
+      changecolor.addEventListener("click", function (e) {
+        console.log("The background color has been changed");
+        const card = document.querySelector("logo-card");
+        if (card && card.style.backgroundColor === "white") {
+          card.style.backgroundColor = "red";
+        } else {
+          card.style.backgroundColor = "white";
+        }
+      });
     });
 
 
