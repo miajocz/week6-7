@@ -36,17 +36,15 @@
       document.querySelector("logo-card:last-child").remove();
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const changecolor = document.querySelector(".toggle-background");
-      changecolor.addEventListener("click", function (e) {
-        console.log("The background color has been changed");
-        const card = document.querySelector("logo-card");
-        if (card && card.style.backgroundColor === "white") {
-          card.style.backgroundColor = "red";
-        } else {
-          card.style.backgroundColor = "white";
-        }
-      });
+    const changecolor = document.querySelector(":host([accent]) .toggle-background");
+    changecolor.addEventListener("click", function (e) {
+      console.log("The background color has been changed");
+      const card = document.querySelector(":host([accent])");
+      if (card && card.style.backgroundColor === "white") {
+        card.style.backgroundColor = "red";
+      } else {
+        card.style.backgroundColor = "white";
+      }
     });
 
 
