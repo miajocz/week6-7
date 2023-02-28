@@ -1,5 +1,4 @@
 import { LitElement, html, css } from 'lit';
-import { MemeMaker } from '@lrnwebcomponents/meme-maker/meme-maker.js';
 
 const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
 
