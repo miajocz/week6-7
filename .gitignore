@@ -6,7 +6,6 @@
 .DS_Store
 
 ## npm
-/node_modules/
 /npm-debug.log
 
 ## testing
@@ -23,4 +22,3 @@
 storybook-static
 custom-elements.json
 
-node_modules
