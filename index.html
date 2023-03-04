@@ -59,11 +59,11 @@
       document.querySelector("logo-card:last-child").remove();
     });
 
-    //When the card is clicked the color changes
     document.querySelector(".changeColorBtn").addEventListener("click", function (e) {
       var colors = ["blue", "gray", "red", "white"];
       var randomColor = colors[Math.floor(Math.random() * colors.length)];
-      document.querySelector("logo-card.card").style.backgroundColor = randomColor;
+      var logoCard = document.querySelector("logo-card");
+      logoCard.setAttribute("accent-color", randomColor);
     });
 
 
