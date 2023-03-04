@@ -15,9 +15,8 @@
 <body>
   <logo-card></logo-card>
 
-  <script type="module">
-    import './src/logo-card.js';
-
+  <script type="module" src='./src/logo-card.js'></script>
+  <script>
     document.querySelector(".duplicator").addEventListener("click", function (e) {
       const card = document.querySelector("logo-card");
       const clone = card.cloneNode(true);
