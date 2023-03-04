@@ -58,6 +58,22 @@ export class LogoCard extends LitElement {
       --bg-color: #f8f8f8;
       --card-bg-color: #fff;
     }
+    :host([accent-color="blue" ]) .card {
+      background-color: var(--logo-card-accent-color, blue);
+      color: white; 
+    }
+    :host([accent-color="gray" ]) .card {
+      background-color: var(--logo-card-accent-color, gray);
+      color: white; 
+    }
+    :host([accent-color="red" ]) .card {
+      background-color: var(--logo-card-accent-color, red);
+      color: white; 
+    }
+    :host([accent-color="white" ]) .card {
+      background-color: var(--logo-card-accent-color, white);
+      color: black; 
+    }
   `;
   }
 

@@ -4,10 +4,34 @@
 <head>
   <div class="button">
     <button class="duplicator">Duplication Button</button>
-    <button class="toggle-btn">Toggle Background</button>
+    <button class="changeColorBtn"> Background Color</button>
     <button class="change-heading">Change Heading</button>
     <button class="delete-card">Delete Card</button>
   </div>
+  <style>
+    html,
+    body {
+      margin: 10;
+      padding: 0;
+      background-color: white;
+    }
+
+    logo-card[accent-color="blue"] {
+      --logo-card-accent-color: blue;
+    }
+
+    logo-card[accent-color="gray"] {
+      --logo-card-accent-color: gray;
+    }
+
+    logo-card[accent-color="red"] {
+      --logo-card-accent-color: red;
+    }
+
+    logo-card[accent-color="white"] {
+      --logo-card-accent-color: white;
+    }
+  </style>
 
   <title>logo-card</title>
 </head>
@@ -35,17 +59,11 @@
       document.querySelector("logo-card:last-child").remove();
     });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      let card = document.querySelector(".card");
-      let toggleBtn = document.querySelector(".toggle-btn");
-
-      toggleBtn.addEventListener("click", function () {
-        if (card.style.getPropertyValue("--card-bg-color") === "#fff") {
-          card.style.setProperty("--card-bg-color", "#333");
-        } else {
-          card.style.setProperty("--card-bg-color", "#fff");
-        }
-      });
+    //When the card is clicked the color changes
+    document.querySelector(".changeColorBtn").addEventListener("click", function (e) {
+      var colors = ["blue", "gray", "red", "white"];
+      var randomColor = colors[Math.floor(Math.random() * colors.length)];
+      document.querySelector("logo-card.card").style.backgroundColor = randomColor;
     });
 
 
