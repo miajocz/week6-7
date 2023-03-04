@@ -39,10 +39,10 @@
 
     toggleBtn.addEventListener("click", function () {
       const body = document.querySelector("body");
-      if (body.style.getPropertyValue("--bg-color") === "#f8f8f8") {
-        body.style.setProperty("--bg-color", "blue");
+      if (card.style.getPropertyValue("--background-color") === "#fff") {
+        card.style.setProperty("--background-color", "#333");
       } else {
-        body.style.setProperty("--bg-color", "red");
+        card.style.setProperty("--background-color", "#fff");
       }
     });
 

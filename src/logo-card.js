@@ -22,7 +22,7 @@ export class LogoCard extends LitElement {
     
     .card {
       width: 300px;
-      background-color: white;
+      background-color: var(--card-bg-color);
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       padding: 20px;
@@ -53,6 +53,10 @@ export class LogoCard extends LitElement {
       padding: 10px 20px;
       border-radius: 5px;
       text-decoration: none;
+    }
+    :root {
+      --bg-color: #f8f8f8;
+      --card-bg-color: #fff;
     }
   `;
   }
