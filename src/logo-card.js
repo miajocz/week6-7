@@ -72,7 +72,7 @@ export class LogoCard extends LitElement {
   render() {
     return html`
     <div class="card-container">
-      <div id="card" class="card">
+      <div class="card" class="card">
         <h1>Penn State Logo Card</h1>
         <meme-maker class="meme" image-url=${this.image} top-text=${this.topText} bottom-text=${this.bottomText}>
         </meme-maker>

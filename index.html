@@ -4,7 +4,7 @@
 <head>
   <div class="button">
     <button class="duplicator">Duplication Button</button>
-    <button id="toggle-btn">Toggle Background</button>
+    <button class="toggle-btn">Toggle Background</button>
     <button class="change-heading">Change Heading</button>
     <button class="delete-card">Delete Card</button>
   </div>
@@ -35,15 +35,17 @@
       document.querySelector("logo-card:last-child").remove();
     });
 
-    const toggleBtn = document.getElementById("toggle-btn");
+    document.addEventListener("DOMContentLoaded", function () {
+      let card = document.querySelector(".card");
+      let toggleBtn = document.querySelector(".toggle-btn");
 
-    toggleBtn.addEventListener("click", function () {
-      const body = document.querySelector("body");
-      if (card.style.getPropertyValue("--background-color") === "#fff") {
-        card.style.setProperty("--background-color", "#333");
-      } else {
-        card.style.setProperty("--background-color", "#fff");
-      }
+      toggleBtn.addEventListener("click", function () {
+        if (card.style.getPropertyValue("--card-bg-color") === "#fff") {
+          card.style.setProperty("--card-bg-color", "#333");
+        } else {
+          card.style.setProperty("--card-bg-color", "#fff");
+        }
+      });
     });
 
 
