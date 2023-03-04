@@ -13,68 +13,46 @@ export class LogoCard extends LitElement {
 
   static get styles() {
     return css`
-    .duplicator:hover {
-      background-color: green;
-    }
-    .duplicator:focus {
-      background-color: green;
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     
     .card {
-      width: 350px;
-      border: 2px solid black;
+      width: 300px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
       text-align: center;
-      padding: 10px;
-    }
-    h1 {
-      margin-top: 8px;
-      margin-left: 32px;
-      margin-right: 32px;
-    }
-    meme-maker {
-      display: block;
-      margin-left: 75px;
-      margin-right: auto;
-      margin-top: 16px;
-      width: 200px;
-      --meme-maker-font-size: 24px;
-    }
-    p {
-      margin-top: 16px;
-      margin-bottom: 32px;
-      display: none;
-    }
-    .details {
-      margin-bottom: 8px;
-      padding-top: 10px;
-    }
-    summary {
-      border: 2px solid black;
-      background-color: gray;
-      color: blue;
-      margin-right: 125px; 
-      margin-left: 125px;
-    }
-    @media only screen and (min-width: 500px) and (max-width: 800px) {
-      button {
-        display: none;
-      }
-    }
-    @media only screen and (max-width: 500px) {
-      div {
-        transform: scale(0.8);
-      }
-      img {
-        width: 80%;
-      }
     }
     
-    .bg-toggled {
-      background-color: green;
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
     }
     
-    .hidden {
-      display: block;
+    .card h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .card p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    
+    .card a {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
     }
   `;
   }
@@ -89,9 +67,11 @@ export class LogoCard extends LitElement {
 
   render() {
     return html`
+    <div class="card-container">
       <div id="card" class="card">
         <h1>Penn State Logo Card</h1>
-        <meme-maker class="meme" image-url=${this.image} top-text=${this.topText} bottom-text=${this.bottomText}></meme-maker>
+        <meme-maker class="meme" image-url=${this.image} top-text=${this.topText} bottom-text=${this.bottomText}>
+        </meme-maker>
         <slot>
           <p>${this.paragraphText}</p>
         </slot>
@@ -106,6 +86,7 @@ export class LogoCard extends LitElement {
           </slot>
         </details>
       </div>
+    </div>
     `;
   }
 }

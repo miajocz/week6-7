@@ -4,7 +4,7 @@
 <head>
   <div class="button">
     <button class="duplicator">Duplication Button</button>
-    <button class="toggle-background">Toggle Background</button>
+    <button id="toggle-btn">Toggle Background</button>
     <button class="change-heading">Change Heading</button>
     <button class="delete-card">Delete Card</button>
   </div>
@@ -35,14 +35,14 @@
       document.querySelector("logo-card:last-child").remove();
     });
 
-    const changecolor = document.querySelector(":host([accent]) .toggle-background");
-    changecolor.addEventListener("click", function (e) {
-      console.log("The background color has been changed");
-      const card = document.querySelector(":host([accent])");
-      if (card && card.style.backgroundColor === "white") {
-        card.style.backgroundColor = "red";
+    const toggleBtn = document.getElementById("toggle-btn");
+
+    toggleBtn.addEventListener("click", function () {
+      const body = document.querySelector("body");
+      if (body.style.getPropertyValue("--bg-color") === "#f8f8f8") {
+        body.style.setProperty("--bg-color", "blue");
       } else {
-        card.style.backgroundColor = "white";
+        body.style.setProperty("--bg-color", "red");
       }
     });
 
