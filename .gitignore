@@ -21,6 +21,5 @@
 /out-tsc/
 
 storybook-static
-custom-elements.json
 
 node_modules

@@ -8,16 +8,26 @@ export class LogoCard extends LitElement {
     image: { type: String },
     topText: { type: String },
     bottomText: { type: String },
-    paragraphText: { type: String }
+    accentColor: {
+      type: String,
+      reflect: true,
+      attribute: 'accent-color'
+    },
+    title: { type: String, reflect: true },
+    subtitle: { type: String },
+    opened: { type: Boolean, reflect: true }
   }
 
   static get styles() {
     return css`
     .card-container {
-      display: flex;
+      padding-top: 10px;
       justify-content: center;
+      display: flex;
       align-items: center;
-      height: 100vh;
+      height: 90vh;
+      float: left;
+      display: block;
     }
     
     .card {
@@ -27,6 +37,7 @@ export class LogoCard extends LitElement {
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
       padding: 20px;
       text-align: center;
+      display: block;
     }
     
     .card img {
@@ -66,13 +77,21 @@ export class LogoCard extends LitElement {
       background-color: var(--logo-card-accent-color, gray);
       color: white; 
     }
-    :host([accent-color="red" ]) .card {
-      background-color: var(--logo-card-accent-color, red);
-      color: white; 
-    }
     :host([accent-color="white" ]) .card {
       background-color: var(--logo-card-accent-color, white);
       color: black; 
+    }
+    @media (min-width: 500px) and (max-width: 800px) {
+      button {
+        opacity: 0;
+        display: none;
+      }
+    }
+    @media (max-width: 500px) {
+      div {
+        font-size: 10px;
+        image-resolution: auto;
+      }
     }
   `;
   }
@@ -82,28 +101,46 @@ export class LogoCard extends LitElement {
     this.image = 'https://brand.psu.edu/images/backgrounds/penn-state-shield.jpg';
     this.topText = 'The Official';
     this.bottomText = 'Penn State Logo';
-    this.paragraphText = 'This is the logo that The Pennsylvania State University uses.';
+    this.title = 'The Penn State Logo';
+    this.subtitle = 'Description';
+    this.opened = false;
+  }
+  toggleEvent(e) {
+    var state = this.shadowRoot.querySelector('details').getAttribute('open') === '' ? true : false;
+    this.opened = state;
+  }
+
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      if (propName === 'opened') {
+        this.dispatchEvent(new CustomEvent('opened-changed',
+          {
+            composed: true,
+            bubbles: true,
+            cancelable: false,
+            detail: {
+              value: this[propName]
+            }
+          }
+        ));
+        console.log(`${propName} changed. oldValue: ${oldValue}`);
+      }
+    });
   }
 
   render() {
     return html`
     <div class="card-container">
-      <div class="card" class="card">
-        <h1>Penn State Logo Card</h1>
+      <div class="card">
+        <h1>${this.title}</h1>
         <meme-maker class="meme" image-url=${this.image} top-text=${this.topText} bottom-text=${this.bottomText}>
         </meme-maker>
-        <slot>
-          <p>${this.paragraphText}</p>
-        </slot>
-        <details class="details">
-          <summary>Details</summary>
-          <slot>
-            <ul>
-              <li>This is a logo for Penn State University.</li>
-              <li>It is a blue and white shield with the letters PSU in the middle.</li>
-              <li>It is used on the Penn State website and on all of the Penn State merchandise.</li>
-            </ul>
-          </slot>
+        <h2>${this.subtitle}</h2>
+        <details .open="${this.opened}" @toggle="${this.toggleEvent}" @click="${this.clickEvent}">
+          <summary>Click here for more details</summary>
+          <ul>
+            <slot></slot>
+          </ul>
         </details>
       </div>
     </div>

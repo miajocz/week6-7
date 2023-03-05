@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
 
+
 <head>
   <div class="button">
     <button class="duplicator">Duplication Button</button>
     <button class="changeColorBtn"> Background Color</button>
     <button class="change-heading">Change Heading</button>
     <button class="delete-card">Delete Card</button>
+    <button class="toggleDetails">Open Details</button>
   </div>
   <style>
     html,
@@ -24,20 +26,37 @@
       --logo-card-accent-color: gray;
     }
 
-    logo-card[accent-color="red"] {
-      --logo-card-accent-color: red;
-    }
-
     logo-card[accent-color="white"] {
       --logo-card-accent-color: white;
     }
-  </style>
 
-  <title>logo-card</title>
+    button {
+      background-color: #041E42;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover {
+      background-color: navy;
+    }
+  </style>
 </head>
 
 <body>
-  <logo-card></logo-card>
+  <logo-card>
+    <li>This is a logo for Penn State University.</li>
+    <li>It is a blue and white shield with the nittany lion in the middle.</li>
+    <li>It is used on the Penn State website and on all of the Penn State merchandise.</li>
+  </logo-card>
 
   <script type="module" src='./src/logo-card.js'></script>
   <script>
@@ -47,26 +66,38 @@
       card.parentNode.appendChild(clone);
     });
 
-    // write a method to change the h1 field to "Something Else" when then change-heading button is clicked
     document.querySelector(".change-heading").addEventListener("click", function (e) {
       const logoCard = document.querySelector("logo-card");
       const h1Element = logoCard.shadowRoot.querySelector("h1");
-      h1Element.textContent = "Something Else";
+
+      if (h1Element.textContent === "Something Else") {
+        h1Element.textContent = "The Penn State Logo";
+      } else {
+        h1Element.textContent = "Something Else";
+      }
     });
 
+    document.body.addEventListener('opened-changed', (e) => {
+      document.querySelector(".toggleDetails").innerText = e.detail.value ? 'Hide Details' : 'Show Details';
+      console.log('opened-changed', e.detail, e.target)
+    });
 
     document.querySelector(".delete-card").addEventListener("click", function (e) {
       document.querySelector("logo-card:last-child").remove();
     });
 
     document.querySelector(".changeColorBtn").addEventListener("click", function (e) {
-      var colors = ["blue", "gray", "red", "white"];
+      var colors = ["blue", "gray", "white"];
       var randomColor = colors[Math.floor(Math.random() * colors.length)];
       var logoCard = document.querySelector("logo-card");
       logoCard.setAttribute("accent-color", randomColor);
     });
 
-
+    //for some reason this throws an error only after making use of the change heading button. Refresh the page, and this button works perfectly.
+    document.querySelector(".toggleDetails").addEventListener("click", function (e) {
+      var details = document.querySelector("logo-card");
+      details.opened = !details.opened;
+    })
 
   </script>
 </body>
