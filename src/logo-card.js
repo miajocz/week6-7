@@ -98,10 +98,8 @@ export class LogoCard extends LitElement {
 
   constructor() {
     super();
-    this.image = 'https://brand.psu.edu/images/backgrounds/penn-state-shield.jpg';
-    this.topText = 'The Official';
-    this.bottomText = 'Penn State Logo';
-    this.title = 'The Penn State Logo';
+    this.image = 'https://logos-world.net/wp-content/uploads/2020/05/Washington-Nationals-Emblem.png';
+    this.title = 'The Washington Nationals Logo';
     this.subtitle = 'Description';
     this.opened = false;
   }
